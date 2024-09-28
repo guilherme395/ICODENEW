@@ -45,7 +45,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img
-                    src="./Img/logo.png"
+                    src="./Views/Img/logo.png"
                     width="180"
                     height="50"
                     alt="" />
@@ -75,7 +75,7 @@
                         class="mb-4"
                         height="60"
                         width="200"
-                        src="./Img/logo.png"
+                        src="./Views/Img/logo.png"
                         alt="Bootstrap Logo" />
                 </div>
                 <h1 class="h3 mb-3 fw-normal text-center">
