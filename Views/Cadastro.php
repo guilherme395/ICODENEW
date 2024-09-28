@@ -44,11 +44,7 @@
     <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img
-                    src="./Views/Img/logo.png"
-                    width="180"
-                    height="50"
-                    alt="" />
+                <img src="/ICODENEW/Views/Img/logo.png" width="180" height="50" alt="Logo">
             </a>
             <button
                 class="navbar-toggler"
@@ -71,12 +67,7 @@
         <main class="w-100 form-container">
             <form action="../Controllers/CadastraUsuario.php" method="POST">
                 <div class="text-center">
-                    <img
-                        class="mb-4"
-                        height="60"
-                        width="200"
-                        src="./Views/Img/logo.png"
-                        alt="ICODENEW-logo" />
+                    <img src="/ICODENEW/Views/Img/logo.png" width="180" height="50" alt="Logo">
                 </div>
                 <h1 class="h3 mb-3 fw-normal text-center">
                     Bem-vindo de volta!
