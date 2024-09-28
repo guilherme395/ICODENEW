@@ -22,9 +22,15 @@ class Router
 }
 
 $router = new Router();
+
+# Rotas de Views
 $router->add("", "Views/Home.php");
 $router->add("usuario/login", "Views/Login.php");
 $router->add("usuario/cadastrar", "Views/Cadastro.php");
+$router->add("financeiro", "Views/SystemFinance.php");
+
+
+# Rotas de Controllers
 $router->add("usuario/cadastraUsuario", "Controllers/CadastraUsuario.php");
 $router->add("usuario/verificaUsuario", "Controllers/VerificaUsuario.php");
 
