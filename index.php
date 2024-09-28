@@ -21,22 +21,11 @@ class Router
     }
 }
 
-<<<<<<< HEAD
-$routes = [
-    "" => "Views/Home.php",
-    
-    "login" => "Views/Login.php",
-    "cadastro" => "Views/Cadastro.php",
-    "cadastraUsuario" => "Controllers/CadastraUsuario.php",
-    "verificaUsuario" => "Controllers/VerificaUsuario.php",
-];
-=======
 $router = new Router();
 $router->add("", "Views/Home.php");
 $router->add("usuario/login", "Views/Login.php");
 $router->add("usuario/cadastrar", "Views/Cadastro.php");
 $router->add("usuario/cadastraUsuario", "Controllers/CadastraUsuario.php");
 $router->add("usuario/verificaUsuario", "Controllers/VerificaUsuario.php");
->>>>>>> 4f13060b663963f3905f99d6a966c97f1200fe15
 
 $router->dispatch();
