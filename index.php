@@ -14,6 +14,7 @@ function getRoute()
 
 $routes = [
     "" => "Views/Home.php",
+    
     "login" => "Views/Login.php",
     "cadastro" => "Views/Cadastro.php",
     "cadastraUsuario" => "Controllers/CadastraUsuario.php",

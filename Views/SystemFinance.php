@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagina principal</title>
+    <title>Sistema Financeiro</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -21,6 +21,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
+
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        
     <style>
         html,
         body {
@@ -142,7 +145,7 @@
         }
 
         a.sidebar-link:hover {
-            background-color:  #2b3035;
+            background-color: #2b3035;
             border-left: 3px solid #3b7ddd;
         }
 
@@ -183,6 +186,112 @@
         #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
             transform: rotate(45deg);
             transition: all .2s ease-out;
+        }
+
+        main {
+            max-width: 550px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .resume {
+            display: flex;
+            padding: 10px 0;
+            gap: 40px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .resume>div {
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0px 0px 5px #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 150px;
+        }
+
+        .newItem {
+            display: flex;
+            gap: 10px;
+            align-items: end;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .divDesc,
+        .divType,
+        .divAmount {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .newItem>button {
+            background-color: #2C73D2;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 34px;
+        }
+
+        input,
+        select {
+            padding: 5px;
+        }
+
+        .divTable {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 98%;
+            padding: 20px 0;
+            border-radius: 5px;
+        }
+
+        th {
+            text-align: start;
+            border-bottom: inset;
+            padding-bottom: 5px;
+        }
+
+        i {
+            font-size: 25px;
+        }
+
+        .bxs-chevron-up-circle {
+            color: #00C9A7;
+        }
+
+        .bxs-chevron-down-circle {
+            color: #D83121;
+        }
+
+        .columnAction {
+            width: 40px;
+            text-align: center;
+        }
+
+        .columnAction>button {
+            background: transparent;
+            border: none;
+        }
+
+        .columnAmount {
+            width: 30%;
+        }
+
+        .columnType {
+            width: 80px;
+            text-align: center;
         }
     </style>
 </head>
@@ -237,11 +346,11 @@
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                 2 Links
+                                2 Links
                             </a>
                             <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
                                 <li class="sidebar-item">
-                                    <a href="./Views/SystemFinance.php" class="sidebar-link">Sistema Financeiro</a>
+                                    <a href="#" class="sidebar-link">Sistema Financeiro</a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="#" class="sidebar-link">Link 2</a>
@@ -271,11 +380,53 @@
             </div>
         </aside>
         <div class="main p-3">
-            <div class="text-center">
-                <h1>
-                    Sidebar Bootstrap 5
-                </h1>
-            </div>
+            <main>
+                <div class="resume">
+                    <div>
+                        Entradas: R$
+                        <span class="incomes">0.00</span>
+                    </div>
+                    <div>
+                        Saídas: R$
+                        <span class="expenses">0.00</span>
+                    </div>
+                    <div>
+                        Total: R$
+                        <span class="total">0.00</span>
+                    </div>
+                </div>
+                <div class="newItem">
+                    <div class="divDesc">
+                        <label for="desc">Descrição</label>
+                        <input type="text" id="desc" />
+                    </div>
+                    <div class="divAmount">
+                        <label for="amount">Valor</label>
+                        <input type="number" id="amount" />
+                    </div>
+                    <div class="divType">
+                        <label for="type">Tipo</label>
+                        <select id="type">
+                            <option>Entrada</option>
+                            <option>Saída</option>
+                        </select>
+                    </div>
+                    <button id="btnNew">Incluir</button>
+                </div>
+                <div class="divTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th class="columnAmount">Valor</th>
+                                <th class="columnType">Tipo</th>
+                                <th class="columnAction"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+            </main>
         </div>
     </div>
 
@@ -295,6 +446,104 @@
         sidebar.addEventListener("mouseleave", function() {
             sidebar.classList.remove("expand");
         });
+
+        const tbody = document.querySelector("tbody");
+const descItem = document.querySelector("#desc");
+const amount = document.querySelector("#amount");
+const type = document.querySelector("#type");
+const btnNew = document.querySelector("#btnNew");
+
+const incomes = document.querySelector(".incomes");
+const expenses = document.querySelector(".expenses");
+const total = document.querySelector(".total");
+
+let items;
+
+btnNew.onclick = () => {
+  if (descItem.value === "" || amount.value === "" || type.value === "") {
+    return alert("Preencha todos os campos!");
+  }
+
+  items.push({
+    desc: descItem.value,
+    amount: Math.abs(amount.value).toFixed(2),
+    type: type.value,
+  });
+
+  setItensBD();
+
+  loadItens();
+
+  descItem.value = "";
+  amount.value = "";
+};
+
+function deleteItem(index) {
+  items.splice(index, 1);
+  setItensBD();
+  loadItens();
+}
+
+function insertItem(item, index) {
+  let tr = document.createElement("tr");
+
+  tr.innerHTML = `
+    <td>${item.desc}</td>
+    <td>R$ ${item.amount}</td>
+    <td class="columnType">${
+      item.type === "Entrada"
+        ? '<i class="bx bxs-chevron-up-circle"></i>'
+        : '<i class="bx bxs-chevron-down-circle"></i>'
+    }</td>
+    <td class="columnAction">
+      <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
+    </td>
+  `;
+
+  tbody.appendChild(tr);
+}
+
+function loadItens() {
+  items = getItensBD();
+  tbody.innerHTML = "";
+  items.forEach((item, index) => {
+    insertItem(item, index);
+  });
+
+  getTotals();
+}
+
+function getTotals() {
+  const amountIncomes = items
+    .filter((item) => item.type === "Entrada")
+    .map((transaction) => Number(transaction.amount));
+
+  const amountExpenses = items
+    .filter((item) => item.type === "Saída")
+    .map((transaction) => Number(transaction.amount));
+
+  const totalIncomes = amountIncomes
+    .reduce((acc, cur) => acc + cur, 0)
+    .toFixed(2);
+
+  const totalExpenses = Math.abs(
+    amountExpenses.reduce((acc, cur) => acc + cur, 0)
+  ).toFixed(2);
+
+  const totalItems = (totalIncomes - totalExpenses).toFixed(2);
+
+  incomes.innerHTML = totalIncomes;
+  expenses.innerHTML = totalExpenses;
+  total.innerHTML = totalItems;
+}
+
+const getItensBD = () => JSON.parse(localStorage.getItem("db_items")) ?? [];
+const setItensBD = () =>
+  localStorage.setItem("db_items", JSON.stringify(items));
+
+loadItens();
+
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
